@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * Email Parser Class.
+ *
+ * Handles plaintext emails.
+ * Parses headers and message body.
+ *
+ * TODO: Handle HTML messages
+ * TODO: Handle text delimination for long lines
+ */
+
 class emailParser {
 	private $rawContent;
 	private $emailLines;
