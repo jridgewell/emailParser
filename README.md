@@ -12,3 +12,4 @@ What else is there to do?
 
 * Write unit tests
 * Implement attachments as their own class
+* Implement a way to search for an attachment
