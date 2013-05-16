@@ -24,7 +24,7 @@ class EmailParser
     last_header = nil
     @raw.each_with_index do |unstripped_line, index|
       line = unstripped_line.strip
-      if is_blank_line? line || unstripped_line
+      if is_blank_line? line
         @raw.shift index + 1
         break
       elsif is_new_header? unstripped_line
