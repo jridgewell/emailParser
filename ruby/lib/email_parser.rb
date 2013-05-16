@@ -9,8 +9,8 @@ class EmailParser
     @raw = raw.lines.to_a
     @headers = {}
     @attachments = []
-    parseHeaders
-    parseBody
+    parse_headers
+    parse_body
     @raw = nil
   end
 
@@ -20,7 +20,7 @@ class EmailParser
   end
 
   private
-  def parseHeaders
+  def parse_headers
     last_header = nil
     @raw.each_with_index do |unstripped_line, index|
       line = unstripped_line.strip
@@ -39,7 +39,7 @@ class EmailParser
     end
   end
 
-  def parseBody
+  def parse_body
     content_type = header 'content-type'
     if content_type && content_type.match(/boundary=(.+)/)
       boundary = $1.gsub(/['"]/, '')
