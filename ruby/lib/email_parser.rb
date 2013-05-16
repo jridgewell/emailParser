@@ -20,6 +20,23 @@ class EmailParser
     header = @headers[h.downcase.to_sym]
     header.join(', ') unless header.nil?
   end
+  
+
+  ###################
+  # Special Headers #
+  ###################
+  
+  def from
+    header :from
+  end
+
+  def to
+    header :to
+  end
+
+  def subject
+    header :subject
+  end
 
   private
 
