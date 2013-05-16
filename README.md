@@ -13,7 +13,7 @@ I avoided using PHP's IMAP functions, it seemed like cheating. This will parse t
 
 * Write unit tests
 * Implement a way to search for an attachment
-* More encodings
+* Body mime-types
 
 
 Ruby Gem
@@ -26,4 +26,4 @@ More or less the same as the PHP implementation. This will parse the headers int
 * Separate into individual modules
 * Comment code
 * Implement a way to search for an attachment
-* More encodings
+* Body mime-types
