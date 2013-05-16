@@ -9,10 +9,10 @@ class EmailParser
     @raw = raw.lines.to_a
     @headers = {}
     @attachments = []
-    
+
     parse_headers
     parse_body
-    
+
     @raw = nil
   end
 
@@ -20,12 +20,12 @@ class EmailParser
     header = @headers[h.downcase.to_sym]
     header.join(', ') unless header.nil?
   end
-  
+
 
   ###################
   # Special Headers #
   ###################
-  
+
   def from
     header :from
   end
@@ -57,7 +57,7 @@ class EmailParser
       end
     end
   end
-  
+
   def parse_header(line)
     header, value = parse_header_and_value(line)
     if header && value
@@ -67,7 +67,7 @@ class EmailParser
       header
     end
   end
-  
+
 
   ##################
   # Body Functions #
@@ -81,7 +81,7 @@ class EmailParser
       parse_single_body
     end
   end
-  
+
   def parse_single_body
     raw = @raw.join
     body = case header('content-transfer-encoding')
@@ -94,23 +94,23 @@ class EmailParser
            end
     @body = body.first.strip
   end
-  
+
   def parse_multipart_body(boundary)
     @raw.shift(next_boundary_index(@raw, boundary) + 1)
-    
+
     while (index = next_boundary_index(@raw, boundary))
       raw = @raw.shift(index)
       @raw.shift
       @attachments << EmailParser.new(raw.join)
     end
-    
+
     @attachments.shift.tap do |main|
       @body = main.body
       @attachments = main.attachments.concat @attachments
       @headers = main.headers.merge @headers
     end
   end
-  
+
 
   #####################
   # Utility Functions #
